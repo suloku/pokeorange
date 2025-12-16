@@ -412,15 +412,19 @@ GetBackpic: ; 5116c
 	cp POLIWRATH
 	jp z, .dual_form
 	cp SQUIRTLE
-	jp z, .squirtle_form
+	jp z, .squirtle_magikarp_spinda_form
 	cp WARTORTLE
-	jp z, .squirtle_form
+	jp z, .squirtle_magikarp_spinda_form
 	cp BLASTOISE
-	jp z, .squirtle_form
+	jp z, .squirtle_magikarp_spinda_form
+	cp MAGIKARP
+	jp z, .squirtle_magikarp_spinda_form
+	cp SPINDA
+	jp z, .squirtle_magikarp_spinda_form
 	
 	jp .skip
 	
-.squirtle_form
+.squirtle_magikarp_spinda_form
 	ld a, c ;restore MonVariant previously stored in c
 	jr .notvariant
 
