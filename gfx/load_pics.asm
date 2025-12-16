@@ -177,6 +177,7 @@ _GetFrontpic: ; 510a5
 GetFrontpicPointer: ; 510d7
 	ld a, [CurPartySpecies]
 	call GetRelevantPicPointers
+	;TODO Squirtle line isn't handled here, but works nonetheless.
 	ld a, [CurPartySpecies]
 	cp RATTATA
 	jp z, .dual_form
@@ -214,11 +215,13 @@ GetFrontpicPointer: ; 510d7
     jp z, .dual_form
     cp RAICHU
     jp z, .dual_form
-	cp LYCANROC
-	jp z, .dual_form
 	cp MEOWTH
 	jp z, .meowth
 	cp PERSIAN
+	jp z, .dual_form
+	cp LYCANROC
+	jp z, .dual_form
+	cp POLIWRATH
 	jp z, .dual_form
 	jp .skip
 .dual_form
@@ -405,6 +408,8 @@ GetBackpic: ; 5116c
 	cp PERSIAN
 	jp z, .dual_form
 	cp LYCANROC
+	jp z, .dual_form
+	cp POLIWRATH
 	jp z, .dual_form
 	cp SQUIRTLE
 	jp z, .squirtle_form
