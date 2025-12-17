@@ -432,8 +432,7 @@ DexEntryScreen_MenuActionJumptable: ; 402f2
 	ld hl, wDexMonPersonality
 	jr z, .ShinyToogle
 	
-	ld a, [TempMonGender]
-	and FORM_MASK
+	ld a, [MonVariant]
 	ld b, a
 	
 ;check mon that have more than 2 forms
@@ -480,6 +479,7 @@ DexEntryScreen_MenuActionJumptable: ; 402f2
 
 .nextForm
 	ld [MonVariant], a
+	and %000000011 ;this is needed since magikarp and spinda will can have a value >3
 	ld b, a
 	ld a, [hl] ;add form to the dex PV
 	and %11111100 ;delete form
