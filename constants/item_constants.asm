@@ -263,8 +263,9 @@ BALL     EQU 3
 TM_HM    EQU 4
 
 ; item actions
-CANT_SELECT EQU 1 << 6
-CANT_TOSS   EQU 1 << 7
+CANT_PCSTORE	EQU 1 << 5
+CANT_SELECT		EQU 1 << 6
+CANT_TOSS  		EQU 1 << 7
 
 
 ; held item effects
