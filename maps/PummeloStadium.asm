@@ -87,6 +87,7 @@ PummeloStadiumEntry:
 
 if def(DEBUG)
 	callasm _asmDebugSkateBoardCheck
+	;Uncomment to totally skip the gauntlet battles when the SKATEBOARD item is held by the first party Pokémon
 	;iftrue .debugSkipGaunlet
 endc
 	closetext
@@ -193,12 +194,10 @@ endc
 	winlosstext RedWinLoss, 0
 	loadtrainer RED, 1
 	startbattle
-
 	playmapmusic
 	reloadmapafterbattle
+	
 	opentext
-.debugSkipGaunlet
-
 	writetext RedWinLoss
 	waitbutton
 	closetext
@@ -214,6 +213,8 @@ endc
 	applymovement PUMMELO_STADIUM_ANNOUNCER, StadiumOfficerMovement2
 	spriteface PLAYER, UP
 	opentext
+
+.debugSkipGaunlet
 	verbosegiveitem MASTER_BALL
 	writetext StadiumWonText2
 	waitbutton
