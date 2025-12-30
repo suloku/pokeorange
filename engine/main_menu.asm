@@ -104,8 +104,12 @@ MainMenu_PrintVersion:
 	hlcoord 0, 12
 	ld de, .pokeorangeVersion1
 	call PlaceString
-	hlcoord 14, 13
+	hlcoord 12, 13
+	ld de, .pokeorangeVersion2
+	call PlaceString	
 	
+	hlcoord 6, 13
+
 	ld de, wd265
 	ld c, 2
 	ld b, PRINTNUM_LEADINGZEROS | 1
@@ -132,6 +136,11 @@ else
 	endc
 		db "@"
 endc
+
+.pokeorangeVersion2
+	db "-"
+	db GIT_VERSION
+	db "@"
 
 MainMenu_PrintCurrentTimeAndDay: ; 49e09
 	ld a, [wSaveFileExists]

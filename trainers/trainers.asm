@@ -456,7 +456,7 @@ TraceyGroup:
 ; ================
 
 	; TRACEY (1)
-	db "TRACEY@"
+	db "?????@"
 	db TRAINERTYPE_MOVES
 
 	; party
