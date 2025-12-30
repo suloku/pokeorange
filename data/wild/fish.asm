@@ -21,10 +21,10 @@ FishGroups: ; 92488
 	db  90 percent + 1, KRABBY,     30
 	db 100 percent,     KINGLER,    30
 .Shore_Master: ; 924f8
-	db  40 percent,     KRABBY,     40
+	db  40 percent,     KRABBY,     50
 	db  70 percent,     USE_TIME,    2
-	db  90 percent + 1, KINGLER,     40
-	db 100 percent,     KRABBY,    40
+	db  90 percent + 1, KINGLER,     50
+	db 100 percent,     KINGLER,    50
 
 .Ocean_Old: ; 92504
 	db  70 percent + 1, KRABBY,     10
@@ -41,10 +41,10 @@ FishGroups: ; 92488
 	db  90 percent + 1, TENTACRUEL, 30
 	db 100 percent,     LANTURN,    30
 .Ocean_Master: ; 92519
-	db  40 percent,     CHINCHOU,   40
+	db  40 percent,     CHINCHOU,   50
 	db  70 percent,     USE_TIME,    5
-	db  90 percent + 1, TENTACRUEL, 40
-	db 100 percent,     LANTURN,    40
+	db  90 percent + 1, TENTACRUEL, 50
+	db 100 percent,     LANTURN,    50
 
 .Sewer_Old: ; 92525
 	db  70 percent + 1, GRIMER,     10
@@ -59,10 +59,10 @@ FishGroups: ; 92488
 	db  85 percent + 1, POLIWHIRL,  30
 	db 100 percent,     SEAKING,    30
 .Sewer_Master: ; 9253a
-	db  40 percent,     MUK,        40
+	db  40 percent,     MUK,        50
 	db  70 percent,     USE_TIME,   9
-	db  90 percent + 1, GOLDEEN,    40
-	db 100 percent,     SEAKING,    40
+	db  90 percent + 1, GOLDEEN,    50
+	db 100 percent,     SEAKING,    50
 
 .Pond_Old: ; 92546
 	db  70 percent + 1, GOLDEEN,    10
@@ -77,9 +77,9 @@ FishGroups: ; 92488
 	db  90 percent + 1, SEAKING,    30
 	db 100 percent,     MARILL,     30
 .Pond_Master: ; 9255b
-	db  70 percent,     AZUMARILL,  40
-	db  90 percent + 1, SEAKING,    40
-	db 100 percent,     POLIWHIRL,  40
+	db  70 percent,     AZUMARILL,  50
+	db  90 percent + 1, POLITOED,   50
+	db 100 percent,     POLIWRATH,  50
 	
 .Contest_Old: ; 92504
 	db  70 percent + 1, FINNEON,    10
@@ -97,9 +97,9 @@ FishGroups: ; 92488
 	db 100 percent,     SEAKING,    30
 .Contest_Master: ; 92519
 	db  40 percent,     USE_TIME,   12
-	db  70 percent,     LANTURN,    40
-	db  90 percent + 1, LUMINEON,   40
-	db 100 percent,     SEAKING,    40
+	db  70 percent,     LANTURN,    50
+	db  90 percent + 1, LUMINEON,   50
+	db 100 percent,     SEAKING,    50
 	
 .Rind_Old: ; 92504
 	db  70 percent + 1, MAGIKARP,   10
@@ -116,24 +116,24 @@ FishGroups: ; 92488
 	db  90 percent + 1, MAGIKARP,   30
 	db 100 percent,     MAGIKARP,   30
 .Rind_Master: ; 92519
-	db  40 percent,     MAGIKARP,   40
+	db  40 percent,     MAGIKARP,   50
 	db  70 percent,     USE_TIME,    8
-	db  90 percent + 1, MAGIKARP,   40
-	db 100 percent,     MAGIKARP,   40
+	db  90 percent + 1, MAGIKARP,   50
+	db 100 percent,     MAGIKARP,   50
 
 TimeFishGroups: ; 9266f
 	;  day              nite
 	db CORSOLA,    20,  STARYU,     20 ;Shore Good     0
 	db CORSOLA,    30,  STARYU,     30 ;Shore Super    1
-	db CORSOLA,    40,  STARYU,     40 ;Shore Master   2
+	db CORSOLA,    50,  STARMIE,     50 ;Shore Master   2
 	db MANTINE,    20,  HORSEA,     20 ;Ocean Good     3
 	db MANTINE,    30,  SEADRA,     30 ;Ocean Super    4
-	db MANTINE,    40,  SEADRA,     40 ;Ocean Master   5
+	db MANTINE,    50,  KINGDRA,    50 ;Ocean Master   5
 	db GYARADOS,   20,  GYARADOS,   20 ;Rind Good      6
 	db GYARADOS,   30,  GYARADOS,   30 ;Rind Super     7
-	db GYARADOS,   40,  GYARADOS,   40 ;Rind Master    8
-	db STUNFISK,   40,  STUNFISK,   40 ;Sewer Master   9
+	db GYARADOS,   50,  GYARADOS,   50 ;Rind Master    8
+	db STUNFISK,   50,  STUNFISK,   50 ;Sewer Master   9
 	db QWILFISH,   20,  QWILFISH,   20 ;Contest Good   10
 	db QWILFISH,   30,  QWILFISH,   30 ;Contest Super  11
-	db QWILFISH,   40,  QWILFISH,   40 ;Contest Master 12
+	db QWILFISH,   50,  QWILFISH,   50 ;Contest Master 12
 ; 926c7

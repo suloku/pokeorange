@@ -779,5 +779,6 @@
 	const EVENT_SUNRAY_CAVE_1F_MARSHADOW_HS							;byte $D998, bit 4	;marshadow sprite hide/show flag
 	const EVENT_GOT_RAINBOW_WING									;byte $D998, bit 5
 	const EVENT_SHAMOUTI_QUEST_ENDED								;byte $D998, bit 6
+	const EVENT_GOT_MASTER_ROD										;byte $D998, bit 7
 
 NUM_EVENTS EQU const_value

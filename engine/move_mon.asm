@@ -1931,14 +1931,24 @@ _GetBattleRandomPersonality: ;tag to call from core.asm, which uses BattleRandom
 	push af ;store PV
 	; Shiny Charm gives 1/256 chance of a shiny
 	call HaveShinyCharm
-	jr nc, .no_charm
+	jr nc, .checkSeashells
 	call Random
 	;cp $10 	; 1/16 roll (16/256), so not the intended 1/256?
 	cp 1 		; 1/256
+	jr nc, .checkSeashells
+	jr .shiny
+
+.checkSeashells
+	;extra 1/16 roll when player has all seashells
+	ld a, [Shells+1]
+	cp 11
+	jr c, .normalRoll ;if seashells <11
+	call Random
+	cp 1 		; 1/256
 	jr nc, .not_shiny
 	jr .shiny
-	
-.no_charm
+
+.normalRoll
 	; 1/4096 shiny chance
     call Random
     cp 4

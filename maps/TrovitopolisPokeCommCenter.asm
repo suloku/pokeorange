@@ -1,5 +1,6 @@
 const_value = 1
 	const TROVITOPOLIS_NURSE
+	const TROVITOPOLIS_SULOKU
 
 TrovitopolisPokeCommCenter_MapScriptHeader:
 
@@ -101,7 +102,128 @@ TrovitopolisPokeCommLuckyText:
 	cont "I did work for"
 	cont "PRISM, you know?"
 	done
+
+TrovitopolisPokeCommSulokuScript:
+	faceplayer
+	opentext
+	writetext TrovitopolisPokeCommSulokuText1
+	waitbutton
+	checkevent EVENT_GOT_MASTER_ROD
+	iffalse .notHaveMasterRod
+	writetext TrovitopolisPokeCommSulokuHaveMasterRodText
+	waitbutton
+	jump .sulokuDone
+
+.notHaveMasterRod
+	writetext TrovitopolisPokeCommSulokuNoRodText
+	waitbutton
+	callasm _ASMCheckSeashells
+	iftrue .haveSeashellsNoRod
+	writetext TrovitopolisPokeCommSulokuNoSeashellsText
+	yesorno
+	iffalse .noClue
+	writetext clueplaceholdertext
+	waitbutton
+	writetext TrovitopolisPokeCommSulokuGoodLuckText
+	waitbutton
+	jump .sulokuDone
 	
+.haveSeashellsNoRod
+	writetext TrovitopolisPokeCommSulokuAllSeashellsText
+	waitbutton
+	verbosegiveitem MASTER_ROD
+	setevent EVENT_GOT_MASTER_ROD
+	writetext TrovitopolisPokeCommSulokuHaveMasterRodText
+	waitbutton
+	jump .sulokuDone
+
+.noClue
+	writetext TrovitopolisPokeCommSulokuNoClueText
+	waitbutton
+.sulokuDone
+	closetext
+	spriteface TROVITOPOLIS_SULOKU, UP
+	end
+	
+TrovitopolisPokeCommSulokuText1:
+	text "SULOKU: I snuck"
+	line "myself here, I"
+	cont "hope the other"
+	cont "devs don't mind."
+	
+	para "With a bit of luck"
+	line "the game is"
+	cont "finally bug-free."
+	done
+
+TrovitopolisPokeCommSulokuNoRodText:
+	text "The SEASHELLs did"
+	line "not have any uses"
+	cont "in this game, but"
+	cont "if you collect all"
+	cont "11 of them, I'll"
+	cont "tell you a little"
+	cont "secret."
+	done
+
+TrovitopolisPokeCommSulokuNoSeashellsText:
+	text "It seems you are"
+	line "missing some"
+	cont "SEASHELLs..."
+
+	para "Do you want a"
+	line "clue?"
+	done
+
+TrovitopolisPokeCommSulokuNoClueText:
+	text "Good luck then!"
+	done
+
+TrovitopolisPokeCommSulokuAllSeashellsText:
+	text "Wow, you found all"
+	line "the SEASHELLs!"
+	
+	para "Here's the secret:"
+	line "having them all"
+	cont "gives you a 1 in"
+	cont "256 chance for"
+	cont "shiny #MON. If"
+	cont "you also have the"
+	cont "SHINY CHARM, it"
+	cont "will be 1 in 128!"
+
+	para "Also, take this"
+	line "rod. With it, you"
+	cont "will be able to"
+	cont "fish level 50"
+	cont "#MON!"
+	done
+
+TrovitopolisPokeCommSulokuHaveMasterRodText:
+	text "Enjoy, see you in"
+	line "Island Walker!"
+	done
+
+clueplaceholdertext:
+	text "Sorry, this is"
+	line "a WIP."
+	done
+
+TrovitopolisPokeCommSulokuGoodLuckText:
+	text "Good luck then!"
+	done
+
+_ASMCheckSeashells:
+	xor a
+	ld [ScriptVar], a
+	ld a, [Shells+1]
+	cp 11
+	ret c ;return if seashells <11
+	ld a, $1
+	ld [ScriptVar], a
+	ret
+
+
 PokeCommSign:
 	jumptext PokeCommSignText
 	
@@ -129,6 +251,19 @@ APSignText:
 	line "to read someone's"
 	cont "E-MAIL!"
 	done
+
+IWSign:
+	jumptext IWSignText
+	
+IWSignText:
+	text "Codename:"
+	line "Island Walker"
+
+	para "<...>"
+	
+	para "It's password"
+	line "protected..."
+	done
 	
 PokeCommMachineSign:
 	jumptext PokeCommMachineSignText
@@ -153,43 +288,45 @@ PokeCommScientistScript:
 TrovitopolisPokeCommCenter_MapEventHeader::
 
 .Warps: db 6
-	warp_def 21, 6, 1, TROVITOPOLIS
-	warp_def 21, 7, 1, TROVITOPOLIS
-	warp_def 12, 0, 5, TROVITOPOLIS_POKE_COMM_CENTER
-	warp_def 21, 0, 1, POKECENTER_2F
-	warp_def 7, 0, 3, TROVITOPOLIS_POKE_COMM_CENTER
-	warp_def 7, 1, 3, TROVITOPOLIS_POKE_COMM_CENTER
+	warp_def 27,  6, 1, TROVITOPOLIS
+	warp_def 27,  7, 1, TROVITOPOLIS
+	warp_def 18,  0, 5, TROVITOPOLIS_POKE_COMM_CENTER
+	warp_def 27,  0, 1, POKECENTER_2F
+	warp_def  7,  0, 3, TROVITOPOLIS_POKE_COMM_CENTER
+	warp_def  7,  1, 3, TROVITOPOLIS_POKE_COMM_CENTER
 
 .CoordEvents: db 0
 
-.BGEvents: db 18
-	signpost 15, 2, SIGNPOST_READ, PokeCommSign
-	signpost 2, 5, SIGNPOST_READ, APSign
-	signpost 10, 19, SIGNPOST_READ, PokeCommMachineSign
-	signpost 11, 19, SIGNPOST_READ, PokeCommMachineSign
-	signpost 12, 19, SIGNPOST_READ, PokeCommMachineSign
-	signpost 13, 19, SIGNPOST_READ, PokeCommMachineSign
-	signpost 14, 19, SIGNPOST_READ, PokeCommMachineSign
-	signpost 15, 19, SIGNPOST_READ, PokeCommMachineSign
-	signpost 17, 18, SIGNPOST_READ, PokeCommMachineSign
-	signpost 17, 17, SIGNPOST_READ, PokeCommMachineSign
-	signpost 17, 16, SIGNPOST_READ, PokeCommMachineSign
-	signpost 17, 15, SIGNPOST_READ, PokeCommMachineSign
-	signpost 15, 14, SIGNPOST_READ, PokeCommMachineSign
-	signpost 14, 14, SIGNPOST_READ, PokeCommMachineSign
-	signpost 13, 14, SIGNPOST_READ, PokeCommMachineSign
-	signpost 12, 14, SIGNPOST_READ, PokeCommMachineSign
-	signpost 11, 14, SIGNPOST_READ, PokeCommMachineSign
-	signpost 10, 14, SIGNPOST_READ, PokeCommMachineSign
+.BGEvents: db 19
+	signpost 21,  2, SIGNPOST_READ, PokeCommSign
+	signpost  2,  5, SIGNPOST_READ, APSign
+	signpost  4,  7, SIGNPOST_READ, IWSign
+	signpost 16, 19, SIGNPOST_READ, PokeCommMachineSign
+	signpost 17, 19, SIGNPOST_READ, PokeCommMachineSign
+	signpost 18, 19, SIGNPOST_READ, PokeCommMachineSign
+	signpost 19, 19, SIGNPOST_READ, PokeCommMachineSign
+	signpost 20, 19, SIGNPOST_READ, PokeCommMachineSign
+	signpost 21, 19, SIGNPOST_READ, PokeCommMachineSign
+	signpost 23, 18, SIGNPOST_READ, PokeCommMachineSign
+	signpost 23, 17, SIGNPOST_READ, PokeCommMachineSign
+	signpost 23, 16, SIGNPOST_READ, PokeCommMachineSign
+	signpost 23, 15, SIGNPOST_READ, PokeCommMachineSign
+	signpost 21, 14, SIGNPOST_READ, PokeCommMachineSign
+	signpost 20, 14, SIGNPOST_READ, PokeCommMachineSign
+	signpost 19, 14, SIGNPOST_READ, PokeCommMachineSign
+	signpost 18, 14, SIGNPOST_READ, PokeCommMachineSign
+	signpost 17, 14, SIGNPOST_READ, PokeCommMachineSign
+	signpost 16, 14, SIGNPOST_READ, PokeCommMachineSign
 
-.ObjectEvents: db 8
-	person_event SPRITE_NURSE, 13, 7, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, TrovitopolisNurseScript, -1
-	person_event SPRITE_LASS, 17, 4, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, TrovitopolisPokeCommLassScript, -1
-	person_event SPRITE_ROCKER, 9, 21, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 1, -1, -1, PAL_OW_GREEN, PERSONTYPE_SCRIPT, 0, TrovitopolisPokeCommRockerScript, -1
-	person_event SPRITE_TEACHER, 18, 10, SPRITEMOVEDATA_STANDING_UP, 0, 1, -1, -1, PAL_OW_RED, PERSONTYPE_SCRIPT, 0, TrovitopolisPokeCommTeacherScript, -1
-	person_event SPRITE_LASS, 5, 5, SPRITEMOVEDATA_STANDING_UP, 0, 1, -1, -1, PAL_OW_PURPLE, PERSONTYPE_SCRIPT, 0, TrovitopolisPokeCommScientist1Script, -1
-	person_event SPRITE_COOLTRAINER_F, 3, 2, SPRITEMOVEDATA_STANDING_UP, 0, 1, -1, -1, PAL_OW_PURPLE, PERSONTYPE_SCRIPT, 0, TrovitopolisPokeCommScientist2Script, -1
-	person_event SPRITE_ROCKER, 5, 0, SPRITEMOVEDATA_STANDING_LEFT, 0, 1, -1, -1, PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, TrovitopolisPokeCommLuckyScript, -1
-	person_event SPRITE_SCIENTIST, 13, 13, SPRITEMOVEDATA_WANDER, 2, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, PokeCommScientistScript, -1
+.ObjectEvents: db 9
+	person_event SPRITE_NURSE, 19,  7, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, TrovitopolisNurseScript, -1
+	person_event SPRITE_ROCKER,  3,  7, SPRITEMOVEDATA_STANDING_UP, 0, 1, -1, -1, PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, TrovitopolisPokeCommSulokuScript, -1
+	person_event SPRITE_LASS, 23,  4, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, TrovitopolisPokeCommLassScript, -1
+	person_event SPRITE_ROCKER, 15, 21, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 1, -1, -1, PAL_OW_GREEN, PERSONTYPE_SCRIPT, 0, TrovitopolisPokeCommRockerScript, -1
+	person_event SPRITE_TEACHER, 24, 10, SPRITEMOVEDATA_STANDING_UP, 0, 1, -1, -1, PAL_OW_RED, PERSONTYPE_SCRIPT, 0, TrovitopolisPokeCommTeacherScript, -1
+	person_event SPRITE_LASS,  5,  5, SPRITEMOVEDATA_STANDING_UP, 0, 1, -1, -1, PAL_OW_PURPLE, PERSONTYPE_SCRIPT, 0, TrovitopolisPokeCommScientist1Script, -1
+	person_event SPRITE_COOLTRAINER_F,  3,  2, SPRITEMOVEDATA_STANDING_UP, 0, 1, -1, -1, PAL_OW_PURPLE, PERSONTYPE_SCRIPT, 0, TrovitopolisPokeCommScientist2Script, -1
+	person_event SPRITE_ROCKER,  5,  0, SPRITEMOVEDATA_STANDING_LEFT, 0, 1, -1, -1, PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, TrovitopolisPokeCommLuckyScript, -1
+	person_event SPRITE_SCIENTIST, 19, 13, SPRITEMOVEDATA_WANDER, 2, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, PokeCommScientistScript, -1
 
 
