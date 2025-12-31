@@ -122,8 +122,78 @@ TrovitopolisPokeCommSulokuScript:
 	writetext TrovitopolisPokeCommSulokuNoSeashellsText
 	yesorno
 	iffalse .noClue
-	writetext clueplaceholdertext
+	
+	checkevent EVENT_DANNYS_HOUSE_SHELL_BOX
+	iftrue .shell1
+	writetext TrovitopolisPokeCommSulokuShell0_BoxText
 	waitbutton
+	jump .shellend
+.shell1
+	checkevent EVENT_NAVEL_ISLAND_SEASHELL
+	iftrue .shell2
+	writetext TrovitopolisPokeCommSulokuShell1_NAVELText
+	waitbutton
+	jump .shellend
+.shell2
+	checkevent EVENT_TROVITA_ISLAND_SEASHELL
+	iftrue .shell3
+	writetext TrovitopolisPokeCommSulokuShell2_TROVITAText
+	waitbutton
+	jump .shellend
+.shell3
+	checkevent EVENT_SEVENGRAPEFRUITS_ISLAND_SEASHELL
+	iftrue .shell4
+	writetext TrovitopolisPokeCommSulokuShell3_7GRAPEText
+	waitbutton
+	jump .shellend
+.shell4
+	checkevent EVENT_ROUTE_60_SEASHELL
+	iftrue .shell5
+	writetext TrovitopolisPokeCommSulokuShell4_ROUTE60AText
+	waitbutton
+	jump .shellend
+.shell5
+	checkevent EVENT_ROUTE_60_SEASHELL_2
+	iftrue .shell6
+	writetext TrovitopolisPokeCommSulokuShell5_ROUTE60BText
+	waitbutton
+	jump .shellend
+.shell6
+	checkevent EVENT_WRECKED_SHIP_SEASHELL
+	iftrue .shell7
+	writetext TrovitopolisPokeCommSulokuShell6_SHIPText
+	waitbutton
+	jump .shellend
+.shell7
+	checkevent EVENT_CLEOPATRA_ISLAND_SEASHELL
+	iftrue .shell8
+	writetext TrovitopolisPokeCommSulokuShell7_CLEOPATRAText
+	waitbutton
+	jump .shellend
+.shell8
+	checkevent EVENT_ROUTE_55_SEASHELL
+	iftrue .shell9
+	writetext TrovitopolisPokeCommSulokuShell8_ROUTE55Text
+	waitbutton
+	jump .shellend
+.shell9
+	checkevent EVENT_ROUTE_67_SEASHELL
+	iftrue .shell10
+	writetext TrovitopolisPokeCommSulokuShell9_ROUTE67Text
+	waitbutton
+	jump .shellend
+.shell10
+	checkevent EVENT_LIGHTNING_ISLAND_SEASHELL
+	iftrue .shell11
+	writetext TrovitopolisPokeCommSulokuShell10_LIGHTINGText
+	waitbutton
+	jump .shellend
+.shell11
+	checkevent EVENT_SHAMOUTI_BAY_SEASHELL
+	writetext TrovitopolisPokeCommSulokuShell11_SHAMOUTIText
+	waitbutton
+
+.shellend
 	writetext TrovitopolisPokeCommSulokuGoodLuckText
 	waitbutton
 	jump .sulokuDone
@@ -204,13 +274,78 @@ TrovitopolisPokeCommSulokuHaveMasterRodText:
 	line "Island Walker!"
 	done
 
-clueplaceholdertext:
-	text "Sorry, this is"
-	line "a WIP."
-	done
-
 TrovitopolisPokeCommSulokuGoodLuckText:
 	text "Good luck then!"
+	done
+
+TrovitopolisPokeCommSulokuShell0_BoxText:
+	text "What? You don't"
+	line "have a SHELL BOX?"
+
+	para "Look for one at"
+	line "DANNY's house."
+	done
+
+TrovitopolisPokeCommSulokuShell1_NAVELText:
+	text "Go search around"
+	line "NAVEL ISLAND."
+	done
+
+TrovitopolisPokeCommSulokuShell2_TROVITAText:
+	text "Go search around"
+	line "TROVITA ISLAND be-"
+	cont "hind a whirlpool."
+	done
+
+TrovitopolisPokeCommSulokuShell3_7GRAPEText:
+	text "Go search around"
+	line "7 GRAPEFRUIT"
+	cont "ISLANDS from ROUTE"
+	cont "59."
+	done
+
+TrovitopolisPokeCommSulokuShell4_ROUTE60AText:
+	text "Go search around"
+	line "ROUTE 60 behind"
+	cont "a whirlpool."
+	done
+
+TrovitopolisPokeCommSulokuShell5_ROUTE60BText:
+	text "Go search around"
+	line "ROUTE 60 by the"
+	cont "shore."
+	done
+
+TrovitopolisPokeCommSulokuShell6_SHIPText:
+	text "Go search around"
+	line "the WRECKED SHIP."
+	done
+
+TrovitopolisPokeCommSulokuShell7_CLEOPATRAText:
+	text "Go search around"
+	line "CLEOPATRA ISLAND."
+	done
+
+TrovitopolisPokeCommSulokuShell8_ROUTE55Text:
+	text "Go search around"
+	line "ROUTE 55 behind"
+	cont "a whirlpool."
+	done
+
+TrovitopolisPokeCommSulokuShell9_ROUTE67Text:
+	text "Go have a dive"
+	line "at ROUTE 67."
+	done
+
+TrovitopolisPokeCommSulokuShell10_LIGHTINGText:
+	text "Go search around"
+	line "LIGHTING ISLAND."
+	done
+
+TrovitopolisPokeCommSulokuShell11_SHAMOUTIText:
+	text "Go search around"
+	line "SHAMOUTI ISLAND's"
+	cont "bay."
 	done
 
 _ASMCheckSeashells:
