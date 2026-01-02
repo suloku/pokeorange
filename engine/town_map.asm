@@ -620,6 +620,17 @@ _Area: ; 91d11
 	ld hl, VTiles0 tile $7f
 	lb bc, BANK(DexMapNestIconGFX), 1
 	call Request2bpp
+
+	ld de, DexMapNestDiveIconGFX
+	ld hl, VTiles0 tile $7e
+	lb bc, BANK(DexMapNestIconGFX), 1
+	call Request2bpp
+
+	ld de, DexMapNestSurfIconGFX
+	ld hl, VTiles0 tile $7d
+	lb bc, BANK(DexMapNestIconGFX), 1
+	call Request2bpp
+
 	call .GetPlayerOrFastShipIcon
 	ld hl, VTiles0 tile $78
 	ld c, 4
@@ -744,6 +755,11 @@ _Area: ; 91d11
 	ld [wd003], a
 	ld e, a
 	farcall FindNest ; load nest landmarks into TileMap[0,0]
+
+	;cleanup as we used EnemyMonUnused in FindNest, though this isn't really needed
+	xor a
+	ld [EnemyMonUnused], a
+
 	decoord 0, 0
 	ld hl, Sprites
 .nestloop
@@ -751,6 +767,9 @@ _Area: ; 91d11
 	and a
 	jr z, .done_nest
 	push de
+	
+	push af ;store landmark
+
 	ld e, a
 	push hl
 	farcall GetLandmarkCoords
@@ -762,7 +781,20 @@ _Area: ; 91d11
 	ld a, e
 	sub 4
 	ld [hli], a
+
+	pop af ;restore landmark
+	and WILD_LANDMARK_MASK ;keep only type of landmark
+	ld d, a
+	cp WILD_UNDERWATER_MAP_MASK
+	ld a, $7e
+	jr z, .placeNestIcon
+	ld a, d
+	cp WILD_SURF_MAP_MASK
+	ld a, $7d
+	jr z, .placeNestIcon
 	ld a, $7f ; nest icon in this context
+
+.placeNestIcon
 	ld [hli], a
 	xor a
 	ld [hli], a
@@ -1092,3 +1124,9 @@ INCBIN "gfx/town_map/kanto.bin"
 
 DexMapNestIconGFX: ; 922d1
 INCBIN "gfx/town_map/dexmap_nest_icon.2bpp"
+
+DexMapNestDiveIconGFX: ; 922d1
+INCBIN "gfx/town_map/dexmap_nest_dive_icon.2bpp"
+
+DexMapNestSurfIconGFX: ; 922d1
+INCBIN "gfx/town_map/dexmap_nest_surf_icon.2bpp"

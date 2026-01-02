@@ -1,5 +1,12 @@
 GetLandmarkCoords: ; 0x1ca896
 ; Return coordinates (d, e) of landmark e.
+
+;erase underwater/surf bitflags
+	ld a, e
+	and LANDMARK_MASK
+	ld e, a
+	
+
 	push hl
 	ld l, e
 	ld h, 0
