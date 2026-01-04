@@ -702,6 +702,7 @@ SpriteMons: ; 14495
 	db MEW
 	db MARSHADOW
 	db HO_OH
+	db MEOWTH
 ; 144b8
 
 
@@ -941,6 +942,8 @@ Group16Sprites:
 	db SPRITE_POKE_BALL
 	db SPRITE_FRUIT_TREE
 	db SPRITE_NURSE
+	db SPRITE_MEOWTH
+	db SPRITE_INVISIBLE
 	db 0 ;end
 	
 Group17Sprites:
