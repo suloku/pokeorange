@@ -151,6 +151,7 @@ SPRITE_POKEMON EQU const_value
 	const SPRITE_MARSHADOW             ; 9f
 	const SPRITE_HO_OH                 ; A0
 	const SPRITE_MEOWTH                ; A1
+	const SPRITE_KECLEON               ; A2
 
 const_value = $e0
 	const SPRITE_DAYCARE_MON_1         ; e0

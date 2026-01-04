@@ -703,6 +703,7 @@ SpriteMons: ; 14495
 	db MARSHADOW
 	db HO_OH
 	db MEOWTH
+	db KECLEON
 ; 144b8
 
 
