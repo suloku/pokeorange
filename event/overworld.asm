@@ -679,6 +679,15 @@ FlyFunction: ; ca3b
 	jr z, .outdoors
 
 .notrovitopolisroof
+	;allow fly in Mt. Navel Peak
+	ld a, [MapGroup]
+	cp $02
+	jr nz, .nomtnavelpeak
+	ld a, [MapNumber]
+	cp $04
+	jr z, .outdoors
+
+.nomtnavelpeak
 	call GetMapPermission
 	call CheckOutdoorMap
 	jr nz, .indoors
