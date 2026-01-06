@@ -101,6 +101,31 @@ OrangeTrophyText:
 	para "It's very shiny."
 	done
 
+KrissHouse2FHealPartyScript:
+	opentext
+	writetext KrissHouse2FHealPartyText
+	yesorno
+	iffalse .skipHeal
+	
+	;Heal party
+	closetext
+	special FadeOutPalettes
+	playmusic MUSIC_HEAL
+	special HealParty
+	pause 60
+	special Special_FadeInQuickly
+	special RestartMapMusic
+	end
+	
+.skipHeal
+	closetext
+	end
+
+KrissHouse2FHealPartyText:
+	text "Would you like to"
+	line "take a nap?"
+	done
+
 KrissHouse2F_MapEventHeader:
 
 .Warps: db 1
@@ -112,6 +137,8 @@ KrissHouse2F_MapEventHeader:
 	signpost 1, 2, SIGNPOST_UP, KrissHousePC
 	signpost 1, 5, SIGNPOST_READ, KrissHouseBookshelf
 
-.PersonEvents: db 2
+.PersonEvents: db 4
 	person_event SPRITE_BIG_LAPRAS, 1, 0, SPRITEMOVEDATA_SNORLAX, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, BigDoll, -1
 	person_event SPRITE_SILVER_TROPHY,  4,  5, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, PERSONTYPE_SCRIPT, 0, OrangeTrophyScript, EVENT_TEMPORARY_1
+	person_event SPRITE_INVISIBLE,  4,  0, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_OW_GREEN, PERSONTYPE_SCRIPT, 0, KrissHouse2FHealPartyScript, -1
+	person_event SPRITE_INVISIBLE,  5,  0, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_OW_GREEN, PERSONTYPE_SCRIPT, 0, KrissHouse2FHealPartyScript, -1

@@ -108,6 +108,7 @@ if def(DEBUG)
 	giveitem SKATEBOARD
 	giveitem EXP_ALL
 	giveitem MASTER_BALL, 99
+	giveitem SHINY_BALL, 99
 	giveitem DIVE_BALL, 99
 	giveitem HEAL_BALL, 99
 	giveitem DUSK_BALL, 99
@@ -137,7 +138,6 @@ if def(DEBUG)
 	giveitem FIRE_ORB
 	giveitem ICE_ORB
 	giveitem SHELL_BOX
-	giveitem SHINY_CHARM
 	givecoins 9999
 	giveshells 13
 	givemoney 0, 195000
@@ -327,20 +327,24 @@ TeachHMSlaveMoves:
 	ld [hli], a ; RAGE
 	ld a, CUT
 	ld [hl], a ; SCARY_FACE
-	; PIKACHU
+	; HO-OH
 	ld hl, PartyMon3Moves
 	ld a, STRENGTH
 	ld [hli], a ; DOUBLE_TEAM
 	ld a, FLASH
 	ld [hl], a ; SLAM
-	; ROCKRUFF
+	; MEW
 	ld hl, PartyMon4Moves
 	ld a, ROCK_CLIMB
 	ld [hli], a
 	ld a, DIG
 	ld [hl], a
-	; MEW
+	; MARSHADOW
 	ld hl, PartyMon5Moves
+	ld a, THIEF
+	ld [hl], a ; TRANSFORM
+	; MEOWTH
+	ld hl, PartyMon6Moves
 	ld a, ROCK_SMASH
 	ld [hli], a ; TRANSFORM
 	ld a, WATERFALL

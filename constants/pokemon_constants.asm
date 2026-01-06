@@ -308,6 +308,7 @@ FORM_ERASE_MASK	EQU %11111100
 ;Used for trainer battles
 MALE_MASK   	EQU %11000000 ;//enforce male
 FEMALE_MASK  	EQU %00000000 ;//enforce female
+GENDERLESS_MASK	EQU %00000000 ;//used in trainers.asm for genderless mon
 
 const_value = 1
 	const SPINDA_A_FORM

@@ -177,14 +177,21 @@ endc
 	applymovement PUMMELO_STADIUM_LUANA, StadiumNPCLeave
 	disappear PUMMELO_STADIUM_LUANA
 	pause 30
-	appear PUMMELO_STADIUM_RED
-	applymovement PUMMELO_STADIUM_RED, StadiumNPCEnter
+	
+;Red or Drake?
+	checkevent EVENT_BEAT_RED
+	iffalse .battleRED ;only allow for Drake battle if player has beat RED in cleopatra island
+	callasm _ASM_PummeloRand
+	iftrue .battleRED
 
-;Red battle
+;Drake rematch!
+	appear PUMMELO_STADIUM_DRAKE
+	applymovement PUMMELO_STADIUM_DRAKE, StadiumNPCEnter
+
 	opentext
-	writetext RedBattleText
+	writetext DrakeGauntletBattleText
 	waitbutton
-	writetext HealPartyText
+	writetext PummeloStadiumHealPartyText
 	yesorno
 	iffalse .skipHeal
 	
@@ -198,6 +205,46 @@ endc
 	;special RestartMapMusic
 	
 .skipHeal
+	closetext
+	blackoutmod PUMMELO_ISLAND
+	winlosstext DrakeGauntletWinLossText, 0
+	loadtrainer DRAKE, 2
+	startbattle
+	playmapmusic
+	reloadmapafterbattle
+	
+	opentext
+	writetext DrakeGauntletPostBattleText
+	waitbutton
+	closetext
+
+	applymovement PUMMELO_STADIUM_DRAKE, StadiumNPCLeave
+	disappear PUMMELO_STADIUM_DRAKE
+	jump .finishGauntlet
+
+.battleRED
+	appear PUMMELO_STADIUM_RED
+	applymovement PUMMELO_STADIUM_RED, StadiumNPCEnter
+
+;Red battle
+
+	opentext
+	writetext RedBattleText
+	waitbutton
+	writetext PummeloStadiumHealPartyText
+	yesorno
+	iffalse .skipHeal2
+	
+	;Heal party
+	closetext
+	special FadeOutPalettes
+	playmusic MUSIC_HEAL
+	special HealParty
+	pause 60
+	special Special_FadeInQuickly
+	;special RestartMapMusic
+	
+.skipHeal2
 	closetext
 	blackoutmod PUMMELO_ISLAND
 	winlosstext RedWinLoss, 0
@@ -214,6 +261,8 @@ endc
 	applymovement PUMMELO_STADIUM_RED, StadiumNPCLeave
 	disappear PUMMELO_STADIUM_RED
 
+.finishGauntlet
+	pause 30
 	opentext
 	writetext StadiumWonText1
 	waitbutton
@@ -285,7 +334,17 @@ if def(DEBUG)
 		ld [ScriptVar], a
 		ret
 endc
-	
+
+_ASM_PummeloRand:
+	xor a
+	ld [ScriptVar], a
+	call Random
+	ldh a, [hRandomAdd]
+	cp a, $80 ;50% chance
+	ret nc
+	ld a, 01
+	ld [ScriptVar], a
+	ret
 
 DrakeGoneText:
 	text "Ah, CHAMPION!"
@@ -360,7 +419,7 @@ RedBattleText:
 	cont "CHAMPION?"
 	done
 
-HealPartyText:
+PummeloStadiumHealPartyText:
 	text "Would you like to"
 	line "heal your party?"
 	done
@@ -391,7 +450,7 @@ StadiumWonText1:
 	text "Great job!"
 	line "We had no doubts"
 	cont "that you would"
-	cont "succeed."
+	cont "succeed, CHAMP!"
 	
 	para "We would like"
 	line "you to have this!"
@@ -402,6 +461,39 @@ StadiumWonText2:
 	line "us again if you"
 	cont "have the itch to"
 	cont "battle, CHAMPION."
+	done
+
+DrakeGauntletBattleText:
+	text "Finally, we have a"
+	line "surprise for you,"
+	cont "CHAMPION!"
+
+	para "DRAKE is back to"
+	line "reclaim his title!"
+
+	para "DRAKE: This time"
+	line "I've come prepared"
+	cont "for you, <PLAYER>!"
+	done
+
+DrakeGauntletWinLossText:
+	text "I need to go back"
+	line "training."
+	done
+
+DrakeGauntletPostBattleText:
+	text "It would seem I"
+	line "still have much to"
+	cont "learn."
+
+	para "You really deserve"
+	line "to be the ORANGE"
+	cont "LEAGUE's CHAMPION."
+
+	para "I shall continue"
+	line "my training."
+
+	para "Until next time."
 	done
 
 PummeloStadiumNoSpikeShellText:

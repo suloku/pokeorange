@@ -26,8 +26,23 @@ MotherScript:
 	end
 	
 .MotherBattle ;TODO
-	writetext MotherBeatRedText
+	writetext MotherBeatRedText1
+	yesorno
+	iftrue .MotherBattleScript
+	writetext MotherBeatRedText2
 	waitbutton
+	closetext
+	end
+
+.MotherBattleScript
+	winlosstext MotherWinLossText, 0
+	loadtrainer MOM, 1
+	startbattle
+	reloadmapafterbattle
+	opentext
+	writetext BeatMotherText
+	waitbutton
+	verbosegiveitem SHINY_BALL
 	closetext
 	end
 
@@ -86,9 +101,9 @@ MotherText:
 	line "to be a TRAINER,"
 	cont "a long time ago."
 
-;	para "If you ever get"
-;	line "strong, I will"
-;	cont "gladly battle you."
+	para "You'll surely get"
+	line "stronger than I"
+	cont "ever was."
 	done
 	
 MotherBeatOrangeCrewText:
@@ -113,7 +128,7 @@ MotherBeatOrangeCrewText:
 	cont "CLEOPATRA ISLAND."
 	done
 
-MotherBeatRedText:
+MotherBeatRedText1:
 	text "MOM: You defeated"
 	line "INDIGO LEAGUE's"
 	cont "CHAMPION?!"
@@ -121,15 +136,41 @@ MotherBeatRedText:
 	para "I guess you ended"
 	line "up being a better"
 	cont "TRAINER than I"
-	cont "used to. I wish I"
-	cont "still had my old"
-	cont "companions around,"
-	cont "I'm sure battling"
-	cont "with my own son,"
-	cont "the CHAMPION!,"
-	cont "would be so much"
-	line "fun!"
+	cont "used to..."
+	para "or maybe not?"
+	
+	para "Care to show your"
+	line "mom how strong you"
+	cont "have grown?"
 	done
+
+MotherBeatRedText2:
+	text "Oh..."
+
+	para "Well, nothing I"
+	line "can do if the"
+	cont "CHAMPION doesn't"
+	cont "feel confident"
+	cont "enough."
+	
+	para "I'll be ready when"
+	line "you are, sweetie."
+	done
+
+MotherWinLossText:
+	text "I'm so proud of"
+	line "you."
+	done
+
+BeatMotherText:
+	text "You are really"
+	line "good, CHAMP."
+	
+	para "Here's a gift for"
+	line "you, use it"
+	cont "wisely."
+	done
+	
 
 StoveText:
 	text "An adept"

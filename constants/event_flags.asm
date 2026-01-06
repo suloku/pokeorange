@@ -47,7 +47,7 @@
 	const EVENT_TEAM_ROCKET_GOLDEN_ISLAND							;byte $D956, bit 3
 	const EVENT_SAVED_CAT_ELDER										;byte $D956, bit 4
 	const EVENT_CAT_BATTLE_HOUSE_CLEARED							;byte $D956, bit 5
-	const EVENT_GOT_EXP_ALL											;byte $D956, bit 6
+	const EVENT_GOT_CAT_STATUE										;byte $D956, bit 6
 	const EVENT_MIMIKYU_FOUGHT										;byte $D956, bit 7
 	
 	const EVENT_TROVITOPOLIS_SAVED									;byte $D957, bit 0

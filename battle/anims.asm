@@ -329,6 +329,7 @@ BattleAnim_SweetScent2: ; c929c
 BattleAnim_ThrowPokeBall:
 	anim_if_param_equal NO_ITEM, .TheTrainerBlockedTheBall
 	anim_if_param_equal MASTER_BALL, .MasterBall
+	anim_if_param_equal SHINY_BALL, .MasterBall
 	anim_if_param_equal ULTRA_BALL, .UltraBall
 	anim_if_param_equal GREAT_BALL, .GreatBall
 	; any other ball
