@@ -524,11 +524,11 @@ TreeMons1:
 	db  5, LICKITUNG,   20
 	db -1
 ;rare
-	db 50, KAKUNA,      20
-	db 15, SPEAROW,     20
-	db 15, PIKIPEK,     20
-	db 10, BEEDRILL,    20
-	db  5, MANKEY,      20
+	db 50, KAKUNA,      21
+	db 15, SPEAROW,     21
+	db 15, PIKIPEK,     21
+	db 10, BEEDRILL,    21
+	db  5, MANKEY,      21
 	db  5, MUNCHLAX,    20
 	db -1
 
@@ -542,11 +542,11 @@ TreeMons2:
 	db  5, LICKITUNG,   30
 	db -1
 ; rare
-	db 50, VENONAT,     30
-	db 15, SPEAROW,     30
-	db 15, TRUMBEAK,    30
-	db 10, EXEGGCUTE,   30
-	db  5, MANKEY,      30
+	db 50, VENONAT,     31
+	db 15, SPEAROW,     31
+	db 15, TRUMBEAK,    31
+	db 10, EXEGGCUTE,   31
+	db  5, MANKEY,      31
 	db  5, MUNCHLAX,    30
 	db -1
 
@@ -560,11 +560,11 @@ TreeMons3:
 	db  5, LICKITUNG,   40
 	db -1
 ; rare
-	db 50, VENOMOTH,    40
-	db 15, FEAROW,      40
-	db 15, TRUMBEAK,    40
-	db 10, EXEGGCUTE,   40
-	db  5, PRIMEAPE,    40
+	db 50, VENOMOTH,    41
+	db 15, FEAROW,      41
+	db 15, TRUMBEAK,    41
+	db 10, EXEGGCUTE,   41
+	db  5, PRIMEAPE,    41
 	db  5, MUNCHLAX,    40
 	db -1
 
@@ -578,11 +578,11 @@ TreeMons4:
 	db  5, LICKITUNG,   50
 	db -1
 ; rare
-	db 50, VENOMOTH,    50
-	db 15, SPEAROW,     50
-	db 15, FEAROW,      50
-	db 10, EXEGGCUTE,   50
-	db  5, PRIMEAPE,    50
+	db 50, VENOMOTH,    51
+	db 15, SPEAROW,     51
+	db 15, FEAROW,      51
+	db 10, EXEGGCUTE,   51
+	db  5, PRIMEAPE,    51
 	db  5, MUNCHLAX,    50
 	db -1
 

@@ -95,7 +95,7 @@ BigDollText:
 	done
 
 OrangeTrophyText:
-	text "The Orange League"
+	text "The ORANGE LEAGUE"
 	line "trophy."
 	
 	para "It's very shiny."
