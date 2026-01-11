@@ -846,6 +846,7 @@ _Area: ; 91d11
 
 ;Only called the first time player goes to the area screen. Goes through all entries to find the first Nest type with Nests.
 .GetAndPlaceNestOnBoot:
+	ld [wd003], a
 	ld a, [EnemyMonUnused]
 .populateOnBootLoop
 	ld [EnemyMonUnused], a
