@@ -7,7 +7,7 @@ Trainers:
 		; TRAINERTYPE_NORMAL:      level, species
 		; TRAINERTYPE_NICKNAME_F:  pokémon nickname
 		; TRAINERTYPE_ITEM:        item
-		; TRAINERTYPE_DVS:         dvs
+		; TRAINERTYPE_DVS:         dvs	-->	NOTE: setting any DVs to $FF will make the ReadTrainerParty: function fail.
 		; TRAINERTYPE_PERSONALITY: personality
 		; TRAINERTYPE_MOVES:       moves
 	; Party
@@ -2963,7 +2963,7 @@ CooltrainerMGroup:
 		db TRIPLE_KICK
 		db COUNTER
 
-	db 40, POLIWRATH, "CHAMP@", CHAMP_BELT, $FF, $FF, MALE_MASK | POLIWRATH_TAD_FORM
+	db 40, POLIWRATH, "CHAMP@", CHAMP_BELT, $FE, $FE, MALE_MASK | POLIWRATH_TAD_FORM
 		db DOUBLE_TEAM
 		db HYPNOSIS
 		db BODY_SLAM
