@@ -181,9 +181,9 @@ MenuMonIconColors::
 	icon_pals RED, BLUE ; TOGETIC
 	icon_pals RED, BLUE ; TOGEKISS
 	icon_pals BLUE, GREEN ; AZURILL
-	icon_pals BLUE, PURPLE ; MAREEP
+	icon_pals YELLOW, PURPLE ; MAREEP
 	icon_pals RED, PURPLE ; FLAAFFY
-	icon_pals RED, BLUE ; AMPHAROS
+	icon_pals YELLOW, PURPLE ; AMPHAROS
 	icon_pals GREEN, PURPLE ; BELLOSSOM
 	icon_pals BLUE, GREEN ; MARILL
 	icon_pals BLUE, YELLOW ; AZUMARILL
@@ -264,8 +264,8 @@ icon_pals_forms: MACRO
 endm
 
 MenuMonIconColors_Forms::
-	icon_pals_forms ONIX, TEAL, GRAY 		; ONIX_CRYSTAL_FORM
-	icon_pals_forms STEELIX, TEAL, GRAY 	; STEELIX_CRYSTAL_FORM
+	icon_pals_forms ONIX, BLUE, YELLOW 		; ONIX_CRYSTAL_FORM
+	icon_pals_forms STEELIX, BLUE, YELLOW 	; STEELIX_CRYSTAL_FORM
 	icon_pals_forms EXEGGUTOR, GREEN, BROWN	; EXEGGUTOR_KANTONESE_FORM
 	icon_pals_forms GRIMER, PURPLE, GREEN	; GRIMER_KANTONESE_FORM
 	icon_pals_forms MUK, PURPLE, GREEN 		; MUK_KANTONESE_FORM
