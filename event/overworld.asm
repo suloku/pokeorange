@@ -245,8 +245,12 @@ CutTreeBlockPointers: ; c862
 	dbw TILESET_JOHTO_1, .johto1
 	dbw TILESET_JOHTO_2, .johto1
 	dbw TILESET_KANTO, .kanto
-	dbw TILESET_GOLDEN_ISLAND, .park
+	dbw TILESET_GOLDEN_ISLAND, .park ;Doesn't have any grass actually
 	dbw TILESET_ILEX_FOREST, .ilex
+	dbw TILESET_SHAMOUTI_ISLAND, .johto1
+	dbw TILESET_PUMMELO_TROVITOPOLIS, .johto1
+	dbw TILESET_BATTLE_TOWER_OUTSIDE, .battleTowerOutside
+	dbw TILESET_UNDERWATER, .battleTowerOutside
 	db -1
 
 .johto1 ; Johto OW
@@ -273,7 +277,15 @@ CutTreeBlockPointers: ; c862
 	db -1
 
 .ilex ; Ilex Forest
-	db $0f, $17, $00
+	db $29, $01, $01 ; grass
+	db $2d, $01, $01 ; grass
+	db $2e, $01, $01 ; grass
+	db $2f, $29, $01 ; grass
+	db $0f, $17, $00 ; tree
+	db -1
+
+.battleTowerOutside ; Battle Tower and Underwater
+	db $03, $02, $01 ; grass
 	db -1
 
 WhirlpoolBlockPointers: ; c8a4

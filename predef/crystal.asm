@@ -276,17 +276,17 @@ LoadSpecialMapOBPalette:
 	ld hl, RockBoulderOBPalette + 2 palettes
 .loadPal
 	call LoadOB7Pal
-	jr .notCrystalCaveB1
+	jr .notTealMap
 
 .notRockBoulderMap
-	; Check if it is the Crystal Onix map to make it teal colored
-	ld hl, OnixMap
+	; Check if it is the Crystal Onix map or the crystal shop to make it teal colored
+	ld hl, TealMaps
 	call IsMapInArray
-	jr nc, .notCrystalCaveB1
+	jr nc, .notTealMap
 	ld hl, TealOBPalette
 	call LoadOB7Pal
 
-.notCrystalCaveB1
+.notTealMap
     ld a, [MapGroup]
 	cp GROUP_SHAMOUTI_ISLAND
     jr nz, .not_shamouti
@@ -398,8 +398,9 @@ RockBoulderMaps:
 	map	TARROCO_ISLAND ; for the celebi shrine
 	db -1
 
-OnixMap:
+TealMaps:
 	map CRYSTAL_CAVE_B1
+	map SUNBURST_CRYSTAL_SHOP
 	db -1
 ; Check if a map is in a map array (magroup, mapnumber) ended in 0xFF
 ; Input: array in hl, MapGroup in d, MapNumber in e

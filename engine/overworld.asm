@@ -985,6 +985,7 @@ Group18Sprites:
 	db SPRITE_POKE_BALL
 	db SPRITE_SAILBOAT_TOP
 	db SPRITE_SAILBOAT_BOTTOM
+	db SPRITE_CLERK
 	db 0 ;end
 
 SpriteHeaders: ; 14736

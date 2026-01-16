@@ -54,8 +54,8 @@ MenuMonIconColors::
 	icon_pals PURPLE, BLUE ; VENOMOTH
 	icon_pals BROWN, RED ; DIGLETT_ALOLAN
 	icon_pals BROWN, RED ; DUGTRIO_ALOLAN
-	icon_pals YELLOW, RED ; MEOWTH_KANTONESE
-	icon_pals RED, YELLOW ; PERSIAN_KANTONESE
+	icon_pals GRAY, RED ; MEOWTH_KANTONESE
+	icon_pals GRAY, RED ; PERSIAN_KANTONESE
 	icon_pals YELLOW, BLUE ; PSYDUCK
 	icon_pals BLUE, TEAL ; GOLDUCK
 	icon_pals BROWN, GREEN ; MANKEY
