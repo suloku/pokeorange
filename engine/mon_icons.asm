@@ -222,7 +222,8 @@ LoadNamingScreenMonIcon:
 	push de
 	push bc
 
-	ld hl, TempMonShiny
+	ld a, MON_SHINY
+	call GetPartyParamLocation
 	call SetMenuMonIconColor
 
 	ld a, [wd265]

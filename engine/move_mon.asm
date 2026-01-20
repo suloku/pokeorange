@@ -1172,6 +1172,8 @@ GiveEgg:: ; df8c
 	ld a, 1
 	jr nz, .got_init_happiness
 	ld a, [BaseEggSteps]
+	rr a ;divide cycles by 2
+	rr a ;divide cycles by 2 again
 
 .got_init_happiness
 	ld [hl], a
@@ -1183,6 +1185,29 @@ GiveEgg:: ; df8c
 	xor a
 	ld [hli], a
 	ld [hl], a
+
+;Make shiny chance a flat 25%
+	ld a, [PartyCount]
+	dec a
+	ld hl, PartyMon1Shiny
+	ld bc, PARTYMON_STRUCT_LENGTH
+	call AddNTimes
+	push hl
+	ldh a, [hRandomAdd]
+	cp a, $40 ;25% chance
+	pop hl
+	ld a, [hl]
+	jr nc, .not_shiny
+.shiny
+	or SHINY_MASK ; set the shiny bit
+	jr .done
+.not_shiny
+	and ~SHINY_MASK ; unset the shiny bit
+.done
+	ld [hl], a
+
+;return
+	xor a
 	and a
 	ret
 ; e035
