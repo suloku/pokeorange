@@ -746,12 +746,14 @@ FlyFunction: ; ca3b
 	reloadmappart
 	callasm HideSprites
 	special UpdateTimePals
+	callasm LoadFlyMonPal
 	callasm FlyFromAnim
 	farscall Script_AbortBugContest
 	special WarpToSpawnPoint
 	callasm DelayLoadingNewSprites
 	writecode VAR_MOVEMENT, PLAYER_NORMAL
 	newloadmap MAPSETUP_FLY
+	callasm LoadFlyMonPal
 	callasm FlyToAnim
 	special WaitSFX
 	callasm .ReturnFromFly
@@ -760,8 +762,19 @@ FlyFunction: ; ca3b
 .ReturnFromFly: ; cacb
 	farcall Function561d
 	call DelayFrame
+	callasm ReloadOWPal
 	call ReplaceKrisSprite
 	farcall LoadOverworldFont
+	ret
+
+LoadFlyMonPal:
+	farcall FlyFunction_GetFlyMonPalette ; returns palette index in d
+	farcall FlyLoadOB0Pal ; loads palette d to OB0
+	ret
+
+ReloadOWPal:
+	ld d, 0
+	farcall FlyLoadOB0Pal ; Loads pallete 0 (Red) to OB0.
 	ret
 
 WaterfallFunction: ; cade

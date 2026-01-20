@@ -513,3 +513,10 @@ HoldSwitchmonIcon: ; 8ea8c
 	dec e
 	jr nz, .loop
 	ret
+
+FlyFunction_GetFlyMonPalette:
+	ld a, MON_SHINY
+	call GetPartyParamLocation
+	call GetMenuMonIconPalette
+	ld d, a
+	ret

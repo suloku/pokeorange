@@ -1773,3 +1773,24 @@ PinkanPalette:
 PinkanShinyPalette:
 	RGB 31, 16, 20
 	RGB 31, 05, 01
+
+; Loads palette d (0-7) from PartyMenuOBPals to Palette OB0
+FlyLoadOB0Pal:
+    ld   a, d        ; A = index
+    add  a, a        ; ×2
+    add  a, a        ; ×4
+    add  a, a        ; ×8
+    ld   c, a
+    ld   b, 0        ; BC = D * 8
+	ld hl, PartyMenuOBPals
+    add  hl, bc      ; HL = base + (index * 8)
+	ld de, OBPals
+	ld bc, 1 palettes
+	ld a, $5
+	call FarCopyWRAM
+; Request palette update
+	ld a, 1
+	ld [hCGBPalUpdate], a
+	ld c, 4
+	call DelayFrames
+	ret
