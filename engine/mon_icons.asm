@@ -404,6 +404,9 @@ GetMemIconGFX: ; 8e9db (23:69db)
 ; 8e9bc
 
 PokegearFlyMap_GetMonIcon: ; 8e9ac
+	ld a, MON_SHINY
+	call GetPartyParamLocation
+	call SetMenuMonIconColor
 	call FlyFunction_GetSpecies
 	; fallthrough
 GetIconGFX: ; 8e9de
