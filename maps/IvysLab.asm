@@ -604,7 +604,7 @@ IvyDirectionsText3:
 	para "Press SELECT and"
 	line "the SHNY icon in"
 	cont "a #DEX entry"
-	cont "to toogle the"
+	cont "to toggle the"
 	cont "different forms"
 	cont "of a #MON."
 	

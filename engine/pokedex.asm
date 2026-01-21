@@ -430,7 +430,7 @@ DexEntryScreen_MenuActionJumptable: ; 402f2
 	ld a, [hl]
 	and SELECT
 	ld hl, wDexMonPersonality
-	jr z, .ShinyToogle
+	jr z, .ShinyToggle
 	
 	ld a, [MonVariant]
 	ld b, a
@@ -489,7 +489,7 @@ DexEntryScreen_MenuActionJumptable: ; 402f2
 	jr .reloadPic
 
 
-.ShinyToogle
+.ShinyToggle
 	ld a, [hl]
 	xor SHINY_MASK ; alternate normal and shiny
 	ld [hl], a
@@ -1836,13 +1836,13 @@ Pokedex_LoadSelectedMonTiles: ; 4143b
 .got_variant
 	ld [MonVariant], a
 	push af
-	;keep shiny toogle
+	;keep shiny toggle
 	ld a, [wDexMonPersonality]
 	and SHINY_MASK
 	ld b, a
 	pop af
 	or b
-	;shiny toogle kept
+	;shiny toggle kept
 	ld [TempMonGender], a
 	ld [wDexMonPersonality], a
 	call GetBaseData
