@@ -1976,7 +1976,7 @@ _GetBattleRandomPersonality: ;tag to call from core.asm, which uses BattleRandom
 
 ; Having all 11 Seashells gives 1/256 chance of a shiny, it stacks with the Shiny Charm
 .checkSeashells
-	;extra 1/16 roll when player has all seashells
+	;extra 1/256 roll when player has all seashells
 	ld a, [Shells+1]
 	cp 11
 	jr c, .normalRoll ;if seashells <11

@@ -4719,7 +4719,7 @@ PrintPlayerHUD: ; 3dfbf
 	predef PlaceNonFaintStatus
 	pop hl
 	pop bc
-	ret nz
+	jr nz, .print_shiny
 	ld a, b
 	cp " "
 	jr nz, .copy_level ; male or female
@@ -4730,6 +4730,7 @@ PrintPlayerHUD: ; 3dfbf
 	ld [TempMonLevel], a
 	call PrintLevel
 
+.print_shiny
 ;Shiny icon
 	ld a, [TempMonShiny]
 	and SHINY_MASK
@@ -8452,7 +8453,7 @@ GetRoamMonPersonality:
 	cp [hl] ;LATIAS
 	ld hl, wRoamMon1Personality
 	ret z
-	ld hl, wRoamMon2Personality
+	ld hl, wRoamMon2Species
 	cp [hl] ;LATIOS
 	ld hl, wRoamMon2Personality
 	ret z
