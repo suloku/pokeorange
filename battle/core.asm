@@ -7940,6 +7940,13 @@ InitEnemyWildmon: ; 3f607
     ld de, wEnemyBackupDVs
     ld bc, 2
     call CopyBytes
+
+	;Backup personality
+	ld hl, EnemyMonPersonality
+	ld de, wEnemyBackupPersonality
+	ld a, [hl]
+	ld [de], a
+
 	ld hl, EnemyMonDVs
 	predef GetVariant
 	ld a, [CurPartySpecies]

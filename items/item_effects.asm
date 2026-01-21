@@ -446,6 +446,9 @@ DuskBall: ; e8a2
 
 	ld a, DITTO
 	ld [TempEnemyMonSpecies], a
+	ld hl, wEnemyBackupPersonality
+	ld a, [wEnemyBackupPersonality]
+	ld [EnemyMonPersonality], a
 	jr .load_data
 
 .not_ditto
