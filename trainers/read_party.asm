@@ -65,22 +65,12 @@ ReadTrainerParty: ; 39771
 	ld a, OTPARTYMON
 	ld [MonType], a
 
+;if there's a personality value, we need to get it to TempMonPersonality so TryAddMonToParty loads the correct basedata, pointers, etc.
 	push hl
 	ld a, [OtherTrainerType]
 	bit TRNTYPE_PERSONALITY, a
 	jr z, .skip
-
-	ld a, [OTPartyCount]
-	dec a
-	ld hl, OTPartyMon1Personality
-	ld bc, PARTYMON_STRUCT_LENGTH
-	call AddNTimes
-	ld d, h
-	ld e, l
-	pop hl
-	push hl
 	ld a, [hli]
-	ld [de], a
 	ld [TempMonPersonality], a
 .skip
 	predef TryAddMonToParty
