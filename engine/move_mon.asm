@@ -1172,8 +1172,8 @@ GiveEgg:: ; df8c
 	ld a, 1
 	jr nz, .got_init_happiness
 	ld a, [BaseEggSteps]
-	rr a ;divide cycles by 2
-	rr a ;divide cycles by 2 again
+	srl a ;divide cycles by 2
+	srl a ;divide cycles by 2 again
 
 .got_init_happiness
 	ld [hl], a
