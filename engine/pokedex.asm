@@ -979,7 +979,7 @@ Pokedex_DrawSearchScreenBG: ; 408f0 (10:48f0)
 	db   "@"
 
 .Menu: ; 4094c
-	db   "SEARCH!"
+	db   "BEGIN SEARCH!!"
 	next "CANCEL"
 	db   "@"
 
