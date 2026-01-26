@@ -1835,6 +1835,7 @@ Pokedex_LoadSelectedMonTiles: ; 4143b
 	ld a, [wFirstSpindaSeen]
 .got_variant
 	ld [MonVariant], a
+	ld a, [EnemyMonGender]
 	push af
 	;keep shiny toggle
 	ld a, [wDexMonPersonality]
