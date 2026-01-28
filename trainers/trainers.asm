@@ -1633,7 +1633,7 @@ ProfAideGroup:
 ; ================================
 ; ================
 
-	; PROF_AIDE (1)
+	; PROF_AIDE (1) (No badges)
 	db "CHARITY@"
 	db TRAINERTYPE_NORMAL
 
@@ -1641,10 +1641,98 @@ ProfAideGroup:
 	db 5, AZURILL
 	db 5, IGGLYBUFF
 	db 5, CLEFFA
+	db 5, HAPPINY
 
 	db $ff ; end
 
 ; ================
+
+	; PROF_AIDE (2) (1 Badge)
+	db "CHARITY@"
+	db TRAINERTYPE_NORMAL
+
+	; party
+	db 20, MARILL
+	db 20, JIGGLYPUFF
+	db 20, CLEFAIRY
+	db 20, HAPPINY
+
+	db $ff ; end
+	
+; ================
+
+	; PROF_AIDE (3) (2 Badges)
+	db "CHARITY@"
+	db TRAINERTYPE_NORMAL
+
+	; party
+	db 30, AZUMARILL
+	db 30, WIGGLYTUFF
+	db 30, CLEFABLE
+	db 30, CHANSEY
+
+	db $ff ; end
+	
+; ================
+
+	; PROF_AIDE (4) (3 Badges)
+	db "CHARITY@"
+	db TRAINERTYPE_NORMAL
+
+	; party
+	db 45, AZUMARILL
+	db 45, WIGGLYTUFF
+	db 45, CLEFABLE
+	db 45, BLISSEY
+
+	db $ff ; end
+	
+; ================
+
+	; PROF_AIDE (5) (4 Badges)
+	db "CHARITY@"
+	db TRAINERTYPE_NORMAL
+
+	; party
+	db 60, AZUMARILL
+	db 60, WIGGLYTUFF
+	db 60, CLEFABLE
+	db 60, BLISSEY
+
+	db $ff ; end
+	
+; ================
+
+	; PROF_AIDE (6) (DRAKE Beat)
+	db "CHARITY@"
+	db TRAINERTYPE_NORMAL
+
+	; party
+	db 75, AZUMARILL
+	db 75, WIGGLYTUFF
+	db 75, CLEFABLE
+	db 75, BLISSEY
+	db 75, BLISSEY
+
+	db $ff ; end
+
+	
+; ================
+
+	; PROF_AIDE (7) (RED Beat)
+	db "CHARITY@"
+	db TRAINERTYPE_NORMAL
+
+	; party
+	db 100, AZUMARILL
+	db 100, WIGGLYTUFF
+	db 100, CLEFABLE
+	db 100, BLISSEY
+	db 100, BLISSEY
+	db 100, BLISSEY
+
+	db $ff ; end
+
 ; ================================
 
 

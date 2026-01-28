@@ -66,7 +66,7 @@
 	const EVENT_GOT_TM_DOUBLE_TEAM									;byte $D958, bit 4
 	const EVENT_GOT_HM_ROCK_SMASH									;byte $D958, bit 5
 	const EVENT_RECEIVED_HM_STRENGTH								;byte $D958, bit 6
-	const EVENT_BEAT_CHARITY										;byte $D958, bit 7
+	const EVENT_CHARITY_LUCKY_EGG									;byte $D958, bit 7
 	
 	const EVENT_MURCOTT_LUCKY_EGG									;byte $D959, bit 0
 	const EVENT_CROSS_MET_ON_CLEOPATRA								;byte $D959, bit 1
