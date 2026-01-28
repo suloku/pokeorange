@@ -112,7 +112,7 @@ Route51CrossScript_left:
 	checkevent EVENT_CROSS_AT_ROUTE51
 	iffalse .finish
 	spriteface PLAYER, RIGHT
-	playmusic MUSIC_LOOK_GLADION
+	playmusic MUSIC_CROSS_ENCOUNTER
 	opentext
 	writetext CrossRoute51Text
 	waitbutton
@@ -126,7 +126,7 @@ Route51CrossScript_up:
 	checkevent EVENT_CROSS_AT_ROUTE51
 	iffalse .finish
 	spriteface PLAYER, DOWN
-	playmusic MUSIC_LOOK_GLADION
+	playmusic MUSIC_CROSS_ENCOUNTER
 	opentext
 	writetext CrossRoute51Text
 	waitbutton
@@ -173,7 +173,7 @@ Route51CrossScript:
 	jump .returnfrombattle
 
 .returnfrombattle:
-	playmusic MUSIC_LOOK_GLADION
+	playmusic MUSIC_CROSS_ENCOUNTER
 	opentext
 	writetext CrossRout51DefeatText
 	waitbutton
