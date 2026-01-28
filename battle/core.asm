@@ -3336,6 +3336,11 @@ CheckWhetherToAskSwitch: ; 3d714
 	ld a, [wOptions]
 	bit BATTLE_SHIFT, a
 	jr nz, .return_nc
+	
+	ld a, [StatusFlags]
+	bit 1, a ; Hard Mode
+	jr nz, .return_nc
+	
 	ld a, [wCurPartyMon]
 	push af
 	ld a, [CurBattleMon]

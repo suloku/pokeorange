@@ -3210,7 +3210,7 @@ CooltrainerMGroup:
 ; ================
 
 	; COOLTRAINERM (14) ; Kinnow Stat Exp Trainer (No badges)
-	db "ACE@"
+	db "STATIX@"
 	db TRAINERTYPE_PERSONALITY
 
 	db 10, HAPPINY, FEMALE_MASK
@@ -3225,7 +3225,7 @@ CooltrainerMGroup:
 	; ================
 
 	; COOLTRAINERM (15) ; Kinnow Stat Exp Trainer (1 badge)
-	db "ACE@"
+	db "STATIX@"
 	db TRAINERTYPE_PERSONALITY
 
 	db 20, CHANSEY, FEMALE_MASK
@@ -3240,7 +3240,7 @@ CooltrainerMGroup:
 	; ================
 
 	; COOLTRAINERM (16) ; Kinnow Stat Exp Trainer (2 Badges)
-	db "ACE@"
+	db "STATIX@"
 	db TRAINERTYPE_PERSONALITY
 
 	db 30, CHANSEY, FEMALE_MASK
@@ -3255,7 +3255,7 @@ CooltrainerMGroup:
 	; ================
 
 	; COOLTRAINERM (17) ; Kinnow Stat Exp Trainer (3 Badges)
-	db "ACE@"
+	db "STATIX@"
 	db TRAINERTYPE_PERSONALITY
 
 	db 45, BLISSEY, FEMALE_MASK
@@ -3270,7 +3270,7 @@ CooltrainerMGroup:
 	; ================
 
 	; COOLTRAINERM (18) ; Kinnow Stat Exp Trainer (4 Badges)
-	db "ACE@"
+	db "STATIX@"
 	db TRAINERTYPE_PERSONALITY
 
 	db 60, BLISSEY, FEMALE_MASK
@@ -3285,7 +3285,7 @@ CooltrainerMGroup:
 	; ================
 
 	; COOLTRAINERM (19) ; Kinnow Stat Exp Trainer (Drake Beat)
-	db "ACE@"
+	db "STATIX@"
 	db TRAINERTYPE_PERSONALITY
 
 	db 75, BLISSEY, FEMALE_MASK
@@ -3300,7 +3300,7 @@ CooltrainerMGroup:
 	; ================
 
 	; COOLTRAINERM (20) ; Kinnow Stat Exp Trainer (Red Beat)
-	db "ACE@"
+	db "STATIX@"
 	db TRAINERTYPE_PERSONALITY
 
 	db 100, BLISSEY, FEMALE_MASK
@@ -4393,7 +4393,7 @@ JaceGroup:
 ; ================
 
 	; JACE (1)
-	db "JACE@"
+	db "JSTATIX@"
 	db TRAINERTYPE_MOVES + TRAINERTYPE_ITEM + TRAINERTYPE_DVS + TRAINERTYPE_PERSONALITY
 
 	; party
