@@ -1,6 +1,7 @@
 const_value = 1
 	const IVYSHOUSE_TRIPLET_1
 	const IVYSHOUSE_TRIPLET_2
+	const IVYSHOUSE_TRIPLET_3
 
 IvysHouse_MapScriptHeader:
 
