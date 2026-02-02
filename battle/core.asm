@@ -4640,6 +4640,47 @@ CheckDanger: ; 3df9e
 	ret
 ; 3dfbf
 
+; Gender print exception for Nidoran_M and Nidoran_F
+; If the pokémon is nidoran male or female, checks nickname (already printed). If the correct gender character is in the correct position, skips printing gender
+; input: d = 0 player, d non-zero enemy
+NidoranGenderException:
+
+	ld e, a ; backup gender char
+	
+	ld a, d
+	and a
+	jr z, .player
+	
+	hlcoord 8, 0 ;screen coordinates where the gender symbol in the enemy nickname of NIDORAN♂ or NIDORAN♀ is printed
+	ld a, [EnemyMonSpecies]
+	jr .checkNidoranM
+
+.player
+	hlcoord 17, 7 ;screen coordinates where the gender symbol in the player nickname of NIDORAN♂ or NIDORAN♀ is printed
+	ld a, [BattleMonSpecies]
+
+.checkNidoranM
+	cp NIDORAN_M
+	jr nz, .checkNidoranF
+	ld a, [hl]
+	cp "♂"
+	jr nz, .keep_gender_char ;print gender if nidoran is nicknamed
+	ld a, " "
+	ret
+
+.checkNidoranF
+	cp NIDORAN_F
+	jr nz, .keep_gender_char
+	ld a, [hl]
+	cp "♀"
+	jr nz, .keep_gender_char ;print gender if nidoran is nicknamed
+	ld a, " "
+	ret
+
+.keep_gender_char
+	ld a, e ; restore previously saved gender character
+	ret
+
 PrintPlayerHUD: ; 3dfbf
 	ld de, BattleMonNick
 	hlcoord 10, 7
@@ -4715,6 +4756,9 @@ PrintPlayerHUD: ; 3dfbf
 	ld a, "♀"
 
 .got_gender_char
+	ld d, 0
+	call NidoranGenderException
+
 	hlcoord 17, 8
 	ld [hl], a
 	hlcoord 14, 8
@@ -4832,6 +4876,9 @@ DrawEnemyHUD: ; 3e043
 	ld a, "♀"
 
 .got_gender
+	ld d, a
+	call NidoranGenderException
+
 	hlcoord 8, 1
 	ld [hl], a
 
