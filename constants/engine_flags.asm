@@ -21,6 +21,7 @@
 	
 	;StatusFlags2
 	const ENGINE_BUG_CONTEST_TIMER
+	const ENGINE_FAST_TMHM
 	
 	;Badges
 	const ENGINE_CORAL_EYE_BADGE

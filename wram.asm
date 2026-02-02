@@ -2215,7 +2215,7 @@ StatusFlags2:: ; d84d
 	; 0 - rockets
 	; 1 -
 	; 2 - bug contest timer
-	; 3 -
+	; 3 - Fast TMHM flag
 	; 4 - bike shop call
 	; 5 - pokerus
 	; 6 - berry juice?

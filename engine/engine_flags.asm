@@ -104,6 +104,7 @@ ENDM
 	engine_flag StatusFlags, 7 ; bug contest on
 
 	engine_flag StatusFlags2, 2 ; bug contest timer
+	engine_flag StatusFlags2, 3 ; Fast TMHM flag
 
 	engine_flag Badges, 0 ; coral-eye badge
 	engine_flag Badges, 1 ; sea ruby badge
