@@ -1198,8 +1198,30 @@ ReturnToBattle_UseBall: ; edfa (3:6dfa)
 
 TownMap: ; ee01
 ;	farcall Special_TownMapItem
+	
+	ld a, [StatusFlags2]
+	bit 3, a
+	jr z, .normalMap
+	
+	ld hl, Text_AskTownMapOrFlyMap
+	call PrintText
+	call YesNoBox
+	jr c, .normalMap
+	
+	farcall MonMenu_Fly
+	ld a, [wFieldMoveSucceeded]
+	and a
+	jr z, .returnFlymap
+	
+	; We fly
+	farcall Pack.done
+	farcall StartMenu_Pokemon.quit
+	ret
+
+.normalMap
 	call FadeToMenu
 	farcall _TownMap
+.returnFlymap
 	call Call_ExitMenu
 	xor a
 	ldh [hBGMapMode], a
@@ -1209,6 +1231,10 @@ TownMap: ; ee01
 	ret
 ; ee08
 
+Text_AskTownMapOrFlyMap: ; 0xedf5
+	; Give a nickname to @ ?
+	text_jump AskTownMaporFlyMap
+	db "@"
 
 Skateboard: ; ee08
 	farcall BikeFunction

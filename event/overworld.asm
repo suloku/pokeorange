@@ -100,7 +100,20 @@ CheckPartyMove: ; c742
 	cp d
 	jr z, .checkTMHM
 	
-	jr .NormalHM ; Handles HEADBUTT, which is a move tutor move
+	ld a, HEADBUTT
+	cp d
+	jr nz, .NormalHM ; Handles every other possible case (there should be none at the moment)
+	
+	;Here is the HEADBUTT code, since it is a tutor move
+	ld de, EVENT_UNLOCKED_HEADBUTT
+	ld b, CHECK_FLAG
+	call EventFlagAction
+	ld a, c
+	and a
+	jr nz, .hasTMHM
+	; Headbutt not unlocked
+	scf
+	ret
 
 .checkTMHM
 	ld hl, TMsHMs

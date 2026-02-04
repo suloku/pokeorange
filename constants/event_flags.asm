@@ -782,5 +782,6 @@
 	const EVENT_GOT_MASTER_ROD										;byte $D998, bit 7
 
 	const EVENT_GOT_TYROGUE											;byte $D999, bit 0
+	const EVENT_UNLOCKED_HEADBUTT									;byte $D999, bit 1
 
 NUM_EVENTS EQU const_value
