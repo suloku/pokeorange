@@ -1136,6 +1136,9 @@ OpenPartyStats: ; 12e00
 
 
 MonMenu_Fly: ; 12e30
+	xor a
+	ld [EnemyMonUnused], a ; temp value for using fly from town map
+
 	farcall FlyFunction
 	ld a, [wFieldMoveSucceeded]
 	and a

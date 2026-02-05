@@ -1199,31 +1199,32 @@ ReturnToBattle_UseBall: ; edfa (3:6dfa)
 TownMap: ; ee01
 ;	farcall Special_TownMapItem
 	
-	ld a, [StatusFlags2]
-	bit 3, a
-	jr z, .normalMap
-	
-	ld hl, Text_AskTownMapOrFlyMap
-	call PrintText
-	call YesNoBox
-	jr c, .normalMap
-	
-	farcall MonMenu_Fly
-	ld a, [wFieldMoveSucceeded]
-	and a
-	jr z, .returnFlymap
-	
-	; We fly
-	farcall Pack.done
-	farcall StartMenu_Pokemon.quit
-	ret
+	; This is modified in UseItem and UseRegisteredItem
+	; 06 for Fly town map, 04 for normal map
+	ld a, [EnemyMonUnused]
+	cp -1
+	jr nz, AirplaneEffect
 
 .normalMap
 	call FadeToMenu
 	farcall _TownMap
-.returnFlymap
+	
+	ld a, [wUsingItemWithSelect]
+	and a
+	jr z, .skipSelect
+	ld a, $01
+	ld [wFieldMoveSucceeded], a
+	call ExitFlyMap
+	xor a
+	ld [EnemyMonUnused], a
+	ld [wUsingItemWithSelect], a
+	jr AirplaneEffect.returnFromMap
+
+.skipSelect
 	call Call_ExitMenu
 	xor a
+	ld [wFieldMoveSucceeded], a
+	ld [EnemyMonUnused], a
 	ldh [hBGMapMode], a
 	farcall Pack_InitGFX
 	farcall WaitBGMap_DrawPackGFX
@@ -1231,10 +1232,28 @@ TownMap: ; ee01
 	ret
 ; ee08
 
-Text_AskTownMapOrFlyMap: ; 0xedf5
-	; Give a nickname to @ ?
-	text_jump AskTownMaporFlyMap
-	db "@"
+AirplaneEffect:
+	ld a, PIDGEOT
+	ld [EnemyMonUnused], a ; temp value for using fly from town map
+
+	farcall FlyFunction
+.returnFromMap
+	ld a, [wFieldMoveSucceeded]
+	cp $2
+	jr z, .Fail
+	cp $0
+	jr z, .Error
+	ld b, $4
+	ld a, $2
+	ret
+
+.Fail:
+	ld a, $3
+	ret
+
+.Error:
+	ld a, $0
+	ret
 
 Skateboard: ; ee08
 	farcall BikeFunction

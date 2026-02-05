@@ -851,17 +851,38 @@ FlyFunction: ; ca3b
 
 .illegal
 	call CloseWindow
+	ld a, [EnemyMonUnused] ; temp value for using fly from town map
+	and a
+	jr z, .done_tiles
+	ld a, [wUsingItemWithSelect]
+	and a
+	jr nz, .overworld
+	farcall Pack_InitGFX ; gets the pack GFX when exiting out of Fly by pressing B
+	farcall WaitBGMap_DrawPackGFX
+	farcall Pack_InitColors
+.done_tiles
 	call WaitBGMap
 	ld a, $80
 	ret
 
+.overworld
+	call ExitFlyMap
+	jr .done_tiles
+
 .DoFly: ; ca94
+	ld a, [wUsingItemWithSelect]
+	and a
+	jr z, .done_select
+	call ExitFlyMap
+.done_select
 	ld hl, .FlyScript
 	call QueueScript
 	ld a, $81
 	ret
 
 .FailFly: ; ca9d
+	xor a
+	ld [EnemyMonUnused], a ; temp value for using fly from town map, after we use fly we clear it
 	call FieldMoveFailed
 	ld a, $82
 	ret
@@ -889,6 +910,12 @@ FlyFunction: ; ca3b
 	callasm ReloadOWPal
 	call ReplaceKrisSprite
 	farcall LoadOverworldFont
+	callasm _ASM_clearFastFly
+	ret
+
+_ASM_clearFastFly:
+	xor a
+	ld [EnemyMonUnused], a ; temp value for using fly from town map, after we use fly we clear it
 	ret
 
 LoadFlyMonPal:
